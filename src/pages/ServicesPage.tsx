@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Scissors, Plus, Edit3, Trash2, DollarSign, Check, X } from 'lucide-react'
+import { Scissors, Plus, Edit3, Trash2, Check, X } from 'lucide-react'
 import { useServices } from '@/hooks/useServices'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import EmptyState from '@/components/EmptyState'
