@@ -12,7 +12,7 @@ const inputClass =
 // Add Service Form
 // ---------------------------------------------------------------------------
 
-function AddServiceForm({ onAdd }: { onAdd: (name: string, price?: number) => Promise<void> }) {
+function AddServiceForm({ onAdd }: { onAdd: (name: string, price?: number) => Promise<unknown> }) {
   const [form, setForm] = useState({ name: '', price: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -90,8 +90,8 @@ function ServiceCard({
   onDelete,
 }: {
   service: Service
-  onUpdate: (id: string, updates: Partial<Service>) => Promise<void>
-  onDelete: (id: string) => Promise<void>
+  onUpdate: (id: string, updates: Partial<Service>) => Promise<unknown>
+  onDelete: (id: string) => Promise<unknown>
 }) {
   const [editing, setEditing] = useState(false)
   const [editName, setEditName] = useState(service.name)
