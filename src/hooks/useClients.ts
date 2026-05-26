@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
-import type { Client, ClientInsert } from '@/types'
+import type { Client, ClientInsert, ClientUpdate } from '@/types'
 
 export function useClients() {
   const [clients, setClients] = useState<Client[]>([])
@@ -17,7 +17,7 @@ export function useClients() {
     if (err) {
       setError(err.message)
     } else {
-      setClients(data ?? [])
+      setClients((data as Client[]) ?? [])
     }
     setLoading(false)
   }, [])
@@ -30,26 +30,29 @@ export function useClients() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) throw new Error('No autenticado')
 
+    const payload: ClientInsert = { ...client, user_id: user.id }
     const { data, error: err } = await supabase
       .from('clients')
-      .insert({ ...client, user_id: user.id })
+      .insert(payload as never)
       .select()
       .single()
     if (err) throw err
-    setClients(prev => [...prev, data].sort((a, b) => a.first_name.localeCompare(b.first_name)))
-    return data
+    const row = data as Client
+    setClients(prev => [...prev, row].sort((a, b) => a.first_name.localeCompare(b.first_name)))
+    return row
   }
 
   const updateClient = async (id: string, updates: Partial<Client>) => {
     const { data, error: err } = await supabase
       .from('clients')
-      .update(updates)
+      .update(updates as ClientUpdate as never)
       .eq('id', id)
       .select()
       .single()
     if (err) throw err
-    setClients(prev => prev.map(c => c.id === id ? data : c))
-    return data
+    const row = data as Client
+    setClients(prev => prev.map(c => c.id === id ? row : c))
+    return row
   }
 
   const deleteClient = async (id: string) => {

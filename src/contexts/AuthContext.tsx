@@ -124,7 +124,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       id: userId,
       full_name: fullName,
       role: 'admin',
-    })
+    } as never)
     if (profileError) throw profileError
 
     // 3. Seed default services for this user
@@ -135,7 +135,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const { error: servicesError } = await supabase
       .from('services')
-      .insert(services)
+      .insert(services as never)
     if (servicesError) {
       // Non-fatal: log but don't block auth
       console.error('Error seeding default services:', servicesError.message)

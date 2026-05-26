@@ -26,7 +26,7 @@ export function useVisits(clientId?: string) {
       .eq('client_id', targetId)
       .order('visit_date', { ascending: false })
 
-    setVisits((data as VisitWithDetails[] | null) ?? [])
+    setVisits((data as unknown as VisitWithDetails[]) ?? [])
     setLoading(false)
   }, [clientId])
 
@@ -56,27 +56,29 @@ export function useVisits(clientId?: string) {
         visit_date: visit.visit_date,
         price: visit.price ?? null,
         notes: visit.notes ?? null,
-      })
+      } as never)
       .select()
       .single()
 
     if (visitErr) throw visitErr
 
+    const row = visitData as Visit
+
     if (visit.colorFormula && Object.values(visit.colorFormula).some(v => v)) {
       await supabase
         .from('color_formulas')
         .insert({
-          visit_id: visitData.id,
+          visit_id: row.id,
           brand: visit.colorFormula.brand ?? null,
           color_number: visit.colorFormula.color_number ?? null,
           developer_volume: visit.colorFormula.developer_volume ?? null,
           mix_details: visit.colorFormula.mix_details ?? null,
           application_notes: visit.colorFormula.application_notes ?? null,
-        })
+        } as never)
     }
 
     await fetchVisits(visit.client_id)
-    return visitData
+    return row
   }
 
   const deleteVisit = async (id: string) => {

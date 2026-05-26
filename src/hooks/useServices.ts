@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
-import type { Service } from '@/types'
+import type { Service, ServiceUpdate } from '@/types'
 
 export function useServices() {
   const [services, setServices] = useState<Service[]>([])
@@ -13,7 +13,7 @@ export function useServices() {
       .select('*')
       .eq('is_active', true)
       .order('name')
-    setServices(data ?? [])
+    setServices((data as Service[]) ?? [])
     setLoading(false)
   }, [])
 
@@ -27,30 +27,32 @@ export function useServices() {
 
     const { data, error } = await supabase
       .from('services')
-      .insert({ name, default_price: defaultPrice ?? null, user_id: user.id })
+      .insert({ name, default_price: defaultPrice ?? null, user_id: user.id } as never)
       .select()
       .single()
     if (error) throw error
-    setServices(prev => [...prev, data].sort((a, b) => a.name.localeCompare(b.name)))
-    return data
+    const row = data as Service
+    setServices(prev => [...prev, row].sort((a, b) => a.name.localeCompare(b.name)))
+    return row
   }
 
   const updateService = async (id: string, updates: Partial<Service>) => {
     const { data, error } = await supabase
       .from('services')
-      .update(updates)
+      .update(updates as ServiceUpdate as never)
       .eq('id', id)
       .select()
       .single()
     if (error) throw error
-    setServices(prev => prev.map(s => s.id === id ? data : s))
-    return data
+    const row = data as Service
+    setServices(prev => prev.map(s => s.id === id ? row : s))
+    return row
   }
 
   const deleteService = async (id: string) => {
     const { error } = await supabase
       .from('services')
-      .update({ is_active: false })
+      .update({ is_active: false } as never)
       .eq('id', id)
     if (error) throw error
     setServices(prev => prev.filter(s => s.id !== id))
