@@ -1,0 +1,22 @@
+{
+  "name": "La Peluquería de Norita",
+  "short_name": "Norita",
+  "description": "Sistema de gestión de clientes para La Peluquería de Norita",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf9f7",
+  "theme_color": "#d4a0a0",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
