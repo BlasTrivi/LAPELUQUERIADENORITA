@@ -4,7 +4,7 @@ import { Scissors, User, Lock, Eye, EyeOff, Loader2 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 
 const CREDENTIALS: Record<string, string> = {
-  nora: 'nora@lapeluqueriadenorita.com',
+  nora: 'nora@coquetas.com',
 }
 
 export function LoginPage() {
@@ -48,7 +48,7 @@ export function LoginPage() {
           </div>
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-gray-800">
-              La Peluquería de Norita
+              Coquetas
             </h1>
             <p className="mt-1 text-sm text-gray-500">
               Iniciá sesión para continuar
@@ -140,7 +140,7 @@ export function LoginPage() {
 
         {/* Footer note */}
         <p className="mt-6 text-center text-xs text-gray-400">
-          La Peluquería de Norita · Sistema de gestión
+          Coquetas · Sistema de gestión
         </p>
       </div>
     </div>

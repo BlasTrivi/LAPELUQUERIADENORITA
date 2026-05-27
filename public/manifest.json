@@ -1,7 +1,7 @@
 {
-  "name": "La Peluquería de Norita",
-  "short_name": "Norita",
-  "description": "Sistema de gestión de clientes para La Peluquería de Norita",
+  "name": "Coquetas",
+  "short_name": "Coquetas",
+  "description": "Sistema de gestión de clientes - Coquetas",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#faf9f7",
