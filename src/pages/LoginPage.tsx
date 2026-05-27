@@ -4,7 +4,7 @@ import { Scissors, User, Lock, Eye, EyeOff, Loader2 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 
 const CREDENTIALS: Record<string, string> = {
-  nora: 'nora@coquetas.com',
+  nora: 'nora@lapeluqueriadenorita.com',
 }
 
 export function LoginPage() {
