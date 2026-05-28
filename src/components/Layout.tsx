@@ -23,7 +23,7 @@ export default function Layout() {
             <Scissors className="w-5 h-5 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-sm font-bold text-foreground leading-tight">Coquetas</h1>
+            <h1 className="text-sm font-bold text-foreground leading-tight">Coketas</h1>
           </div>
         </div>
         <div className="flex items-center gap-3">

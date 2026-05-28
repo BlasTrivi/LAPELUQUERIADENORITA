@@ -1,7 +1,7 @@
 {
-  "name": "Coquetas",
-  "short_name": "Coquetas",
-  "description": "Sistema de gestión de clientes - Coquetas",
+  "name": "Coketas",
+  "short_name": "Coketas",
+  "description": "Sistema de gestión de clientes - Coketas",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#faf9f7",
